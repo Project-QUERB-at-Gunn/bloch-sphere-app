@@ -12,8 +12,12 @@ const vsSource = `
 `;
 
 const fsSource = `
+    attribute vec4 aVertexPosition;
+    
+    uniform vec4 origin;
+    
     void main() {
-        gl_FragColor = vec4(1.0, 1.0, 1.0, 1.0);
+        gl_FragColor = (aVertexPosition == origin) ? vec4(1.0, 1.0, 0.0, 1.0) : vec4(0.5, 0.5, 0.0, 1.0);
     }
 `;
 
@@ -65,6 +69,7 @@ window.onload = () => {
         uniformLocations: {
             projectionMatrix: gl.getUniformLocation(masterShader, 'uProjectionMatrix'),
             modelViewMatrix: gl.getUniformLocation(masterShader, 'uModelViewMatrix'),
+            origin: gl.getAttributeLocation(masterShader, 'origin'),
         },
     };
     
@@ -76,12 +81,25 @@ function drawFrame() {
     const positionBuffer = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
     
-    const positions = [
+    const radius = 100;    
+    const numComponents = Math.floor(radius/2 + 5);
+    
+    /*const positions = [
         -1.0, 1.0,
         1.0, 1.0,
         -1.0, -1.0,
         1.0, -1.0
-    ];
+    ];*/
+    
+    let positions = [0, 0];
+    
+//    var x = 0;
+  //  var y = 0;
+    
+    for (var i = 0; i < Math.PI*2; i += Math.PI*2/numComponents) {
+        positions.push(Math.cos(i)*radius); positions.push(Math.sin(i)*radius);
+        positions.push(Math.cos(i+Math.PI*2/numComponents)*radius); positions.push(Math.sin(i+Math.PI*2/numComponents)*radius);
+    }
     
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(positions), gl.STATIC_DRAW);
     var buffers = {position: positionBuffer};
@@ -112,7 +130,6 @@ function drawFrame() {
     mat4.translate(modelView, modelView, [0.0, 0.0, -6.0]);
     
     {
-        const numComponents = 2;
         const type = gl.FLOAT;
         const normalize = false;
         const stride = 0;
@@ -128,10 +145,11 @@ function drawFrame() {
     gl.useProgram(programInfo.program);
     gl.uniformMatrix4fv(programInfo.uniformLocations.projectionMatrix, false, projection);
     gl.uniformMatrix4fv(programInfo.uniformLocations.modelViewMatrix, false, modelView);
+    gl.uniform4f(programInfo.uniformLocations.origin, 0, 0, 0, 1);
     
     const offset = 0;
     const vertexCount = 4;
-    gl.drawArrays(gl.TRIANGLE_STRIP, offset, vertexCount);
+    gl.drawArrays(gl.TRIANGLE_FAN, offset, vertexCount);
     
     //alert(3);
     
