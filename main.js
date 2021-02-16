@@ -2,17 +2,19 @@ import * as mat4 from "./glmatrix/mat4.js";
 
 const vsSource = `
     attribute vec4 aVertexPosition;
+    out vec4 origPosition;
     
     uniform mat4 uModelViewMatrix;
     uniform mat4 uProjectionMatrix;
     
     void main() {
+        origPosition = aVertexPosition;
         gl_Position = uProjectionMatrix * uModelViewMatrix * aVertexPosition;
     }
 `;
 
 const fsSource = `
-    attribute vec4 aVertexPosition;
+    in vec4 origPosition;
     
     uniform vec4 origin;
     
