@@ -7,12 +7,8 @@ const vsSource = `#version 300 es
     uniform mat4 uModelViewMatrix;
     uniform mat4 uProjectionMatrix;
     
-    uniform vec4 originn;
-    out vec4 origin;
-    
     void main() {
         sharePos = aVertexPosition;
-        origin = originn;
         gl_Position = uProjectionMatrix * uModelViewMatrix * aVertexPosition;
     }
 `;
@@ -23,7 +19,7 @@ const fsSource = `#version 300 es
     in vec4 sharePos;
     out vec4 colour;
     
-    in vec4 origin;
+    uniform vec4 origin;
     
     void main() {
         colour = (sharePos == origin) ? vec4(1.0, 1.0, 0.0, 1.0) : vec4(0.5, 0.5, 0.0, 1.0);
@@ -78,9 +74,11 @@ window.onload = () => {
         uniformLocations: {
             projectionMatrix: gl.getUniformLocation(masterShader, 'uProjectionMatrix'),
             modelViewMatrix: gl.getUniformLocation(masterShader, 'uModelViewMatrix'),
-            origin: gl.getAttribLocation(masterShader, 'originn'),
+            origin: gl.getAttribLocation(masterShader, 'origin'),
         },
     };
+    
+    console.log(programInfo);
     
     drawFrame();
 }
