@@ -1,25 +1,25 @@
 import * as mat4 from "./glmatrix/mat4.js";
 
-const vsSource = `
+const vsSource = `#version 300 es
     attribute vec4 aVertexPosition;
-    //uniform vec4 bVertexPosition;
+    out vec4 sharePos;
     
     uniform mat4 uModelViewMatrix;
     uniform mat4 uProjectionMatrix;
     
     void main() {
-        //bVertexPosition = aVertexPosition;
+        sharePos = aVertexPosition;
         gl_Position = uProjectionMatrix * uModelViewMatrix * aVertexPosition;
     }
 `;
 
-const fsSource = `
-    //uniform vec4 bVertexPosition;
+const fsSource = `#version 300 es
+    in vec4 sharePos;
     
     uniform vec4 origin;
     
     void main() {
-        gl_FragColor = (gl_Position == origin) ? vec4(1.0, 1.0, 0.0, 1.0) : vec4(0.5, 0.5, 0.0, 1.0);
+        gl_FragColor = (sharePos == origin) ? vec4(1.0, 1.0, 0.0, 1.0) : vec4(0.5, 0.5, 0.0, 1.0);
     }
 `;
 
