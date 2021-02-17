@@ -164,7 +164,7 @@ function drawFrame() {
     requestAnimationFrame(drawFrame);
 }
 
-
+window.onerror = alert;
 
 
 
