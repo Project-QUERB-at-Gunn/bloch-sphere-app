@@ -14,6 +14,8 @@ const vsSource = `#version 300 es
 `;
 
 const fsSource = `#version 300 es
+    precision highp float;
+    
     in vec4 sharePos;
     out vec4 colour;
     
