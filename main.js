@@ -160,6 +160,7 @@ function drawFrame() {
     
     //alert(3);
     
+    console.log("drawing done");
     requestAnimationFrame(drawFrame);
 }
 
