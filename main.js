@@ -2,7 +2,6 @@ import * as mat4 from "./glmatrix/mat4.js";
 
 const vsSource = `
     attribute vec4 aVertexPosition;
-    out vec4 origPosition;
     
     uniform mat4 uModelViewMatrix;
     uniform mat4 uProjectionMatrix;
