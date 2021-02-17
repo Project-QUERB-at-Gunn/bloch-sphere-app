@@ -1,7 +1,7 @@
 import * as mat4 from "./glmatrix/mat4.js";
 
 const vsSource = `#version 300 es
-    attribute vec4 aVertexPosition;
+    in vec4 aVertexPosition;
     out vec4 sharePos;
     
     uniform mat4 uModelViewMatrix;
