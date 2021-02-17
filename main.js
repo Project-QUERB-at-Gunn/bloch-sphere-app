@@ -14,8 +14,6 @@ const vsSource = `
 `;
 
 const fsSource = `
-    in vec4 origPosition;
-    
     uniform vec4 origin;
     
     void main() {
