@@ -2,21 +2,24 @@ import * as mat4 from "./glmatrix/mat4.js";
 
 const vsSource = `
     attribute vec4 aVertexPosition;
+    uniform vec4 bVertexPosition;
     
     uniform mat4 uModelViewMatrix;
     uniform mat4 uProjectionMatrix;
     
     void main() {
-        origPosition = aVertexPosition;
+        bVertexPosition = aVertexPosition;
         gl_Position = uProjectionMatrix * uModelViewMatrix * aVertexPosition;
     }
 `;
 
 const fsSource = `
+    uniform vec4 bVertexPosition;
+    
     uniform vec4 origin;
     
     void main() {
-        gl_FragColor = (aVertexPosition == origin) ? vec4(1.0, 1.0, 0.0, 1.0) : vec4(0.5, 0.5, 0.0, 1.0);
+        gl_FragColor = (bVertexPosition == origin) ? vec4(1.0, 1.0, 0.0, 1.0) : vec4(0.5, 0.5, 0.0, 1.0);
     }
 `;
 
