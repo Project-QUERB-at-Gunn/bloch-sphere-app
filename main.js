@@ -15,11 +15,12 @@ const vsSource = `#version 300 es
 
 const fsSource = `#version 300 es
     in vec4 sharePos;
+    out vec4 colour;
     
     uniform vec4 origin;
     
     void main() {
-        gl_FragColor = (sharePos == origin) ? vec4(1.0, 1.0, 0.0, 1.0) : vec4(0.5, 0.5, 0.0, 1.0);
+        colour = (sharePos == origin) ? vec4(1.0, 1.0, 0.0, 1.0) : vec4(0.5, 0.5, 0.0, 1.0);
     }
 `;
 
