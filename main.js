@@ -39,10 +39,10 @@ function loadShader(type, source) {
 
 window.onload = () => {
     const canvas = document.querySelector("#canvas");
-    const gl = canvas.getContext("webgl");
+    const gl = canvas.getContext("webgl2");
     
     if (gl === null) {
-        alert("Your browser does not support WebGL. Please update to the latest version of Firefox to use it.");
+        alert("Your browser does not support WebGL2. Please update to the latest version of Firefox to use it.");
         return;
     }
     
