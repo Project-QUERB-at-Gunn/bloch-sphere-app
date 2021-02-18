@@ -74,7 +74,7 @@ window.onload = () => {
         uniformLocations: {
             projectionMatrix: gl.getUniformLocation(masterShader, 'uProjectionMatrix'),
             modelViewMatrix: gl.getUniformLocation(masterShader, 'uModelViewMatrix'),
-            origin: gl.getAttribLocation(masterShader, 'origin'),
+            origin: gl.getUniformLocation(masterShader, 'origin'),
         },
     };
     
