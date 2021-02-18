@@ -42,6 +42,15 @@ function loadShader(type, source) {
 
 window.onload = () => {
     const canvas = document.querySelector("#canvas");
+    
+    window.dimensions = {
+        width: canvas.width,
+        height: canvas.height
+    };
+    
+    dimensions.halfWidth = dimensions.width/2;
+    dimensions.halfHeight = dimensions.height/2;
+    
     const gl = canvas.getContext("webgl2");
     
     if (gl === null) {
@@ -134,7 +143,7 @@ function drawFrame() {
    // alert(1);
     
     const modelView = mat4.create();
-    mat4.translate(modelView, modelView, [0.0, 0.0, -6.0]);
+    mat4.translate(modelView, modelView, [dimensions.halfWidth, dimensions.halfHeight, -6.0]);
     
     {
         const type = gl.FLOAT;
@@ -155,7 +164,7 @@ function drawFrame() {
     gl.uniform4f(programInfo.uniformLocations.origin, 0.0, 0.0, -6.0, 1);
     
     const offset = 0;
-    const vertexCount = 4;
+    const vertexCount = numComponents;
     gl.drawArrays(gl.TRIANGLE_FAN, offset, vertexCount);
     
     //alert(3);
