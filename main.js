@@ -125,10 +125,10 @@ function drawFrame() {
     const zNear = 0.1;
     const zFar = 100.0;
     
-    alert(30);
+    //alert(30);
     
     const projection = mat4.create();
-    alert(20);
+    //alert(20);
     mat4.perspective(projection, fov, aspect, zNear, zFar);
     
    // alert(1);
@@ -164,7 +164,7 @@ function drawFrame() {
     requestAnimationFrame(drawFrame);
 }
 
-window.onerror = alert;
+//window.onerror = alert;
 
 
 
