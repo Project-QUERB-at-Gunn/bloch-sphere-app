@@ -1,7 +1,7 @@
 import * as mat4 from "./glmatrix/mat4.js";
 
 const vsSource = `#version 300 es
-    in vec4 aVertexPosition;
+    layout (location=0) in vec4 aVertexPosition;
     out vec4 sharePos;
     
     uniform mat4 uModelViewMatrix;
@@ -77,7 +77,7 @@ window.onload = () => {
         program: masterShader,
         
         attribLocations: {
-            vertexPosition: gl.getAttribLocation(masterShader, 'aVertexPosition'),
+            vertexPosition: 0 //gl.getAttribLocation(masterShader, 'aVertexPosition'),
         },
         
         uniformLocations: {
