@@ -113,9 +113,9 @@ function drawFrame() {
 //    var x = 0;
   //  var y = 0;
     
-    for (var i = 0; i < Math.PI*2; i += Math.PI*2/numComponents) {
+    for (var i = 0; i < Math.PI*2; i += Math.PI*2/vertexCount) {
         positions.push(Math.cos(i)*radius); positions.push(Math.sin(i)*radius);
-        positions.push(Math.cos(i+Math.PI*2/numComponents)*radius); positions.push(Math.sin(i+Math.PI*2/numComponents)*radius);
+        positions.push(Math.cos(i+Math.PI*2/vertexCount)*radius); positions.push(Math.sin(i+Math.PI*2/vertexCount)*radius);
     }
     
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(positions), gl.STATIC_DRAW);
