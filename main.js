@@ -2,13 +2,14 @@ import * as mat4 from "./glmatrix/mat4.js";
 
 const vsSource = `#version 300 es
     layout (location=0) in vec4 aVertexPosition;
-    out vec4 sharePos;
+    out vec4 colourIn;
     
     uniform mat4 uModelViewMatrix;
     uniform mat4 uProjectionMatrix;
+    uniform vec4 origin;
     
     void main() {
-        sharePos = aVertexPosition;
+        colourIn = (sharePos == origin) ? vec4(1.0, 1.0, 0.0, 1.0) : vec4(0.5, 0.5, 0.0, 1.0);
         gl_Position = uProjectionMatrix * uModelViewMatrix * aVertexPosition;
     }
 `;
@@ -16,13 +17,11 @@ const vsSource = `#version 300 es
 const fsSource = `#version 300 es
     precision highp float;
     
-    in vec4 sharePos;
-    out vec4 colour;
-    
-    uniform vec4 origin;
+    in vec4 colourIn;
+    out vec4 colourOut;
     
     void main() {
-        colour = (sharePos == origin) ? vec4(1.0, 1.0, 0.0, 1.0) : vec4(0.5, 0.5, 0.0, 1.0);
+        colourOut = colourIn;
     }
 `;
 
