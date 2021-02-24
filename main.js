@@ -9,7 +9,7 @@ const vsSource = `#version 300 es
     uniform vec4 origin;
     
     void main() {
-        colourIn = (sharePos == origin) ? vec4(1.0, 1.0, 0.0, 1.0) : vec4(0.5, 0.5, 0.0, 1.0);
+        colourIn = (aVertexPosition == origin) ? vec4(1.0, 1.0, 0.0, 1.0) : vec4(0.5, 0.5, 0.0, 1.0);
         gl_Position = uProjectionMatrix * uModelViewMatrix * aVertexPosition;
     }
 `;
