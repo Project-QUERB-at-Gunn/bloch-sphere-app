@@ -172,7 +172,7 @@ function drawFrame() {
     gl.uniform4f(programInfo.uniformLocations.origin, 0.0, 0.0, 0.0, 1.0);
     
     const offset = 0;
-    gl.drawArrays(gl.TRIANGLE_FAN, offset, positions.length);
+    gl.drawArrays(gl.TRIANGLE_FAN, offset, positions.length/numComponents);
     
     //alert(3);
     
