@@ -4,6 +4,12 @@ addEventListener("load", () => {
     ry: 0.0,
     rz: 0.0
   };
+  
+  window.positions = {
+    x: 0.0,
+    y: 1.0,
+    z: 0.0
+  }
 
   let sliders = {
     rx: document.getElementById("rx"),
@@ -26,9 +32,13 @@ addEventListener("load", () => {
     var radius = Math.sin(rotations.rx);
 
     var x = radius*Math.cos(rotations.rz);
-  //   var y = radius*Math.sin(rotations.rz);
+    var y = radius*Math.sin(rotations.rz);
+    
+    positions.x = x;
+    positions.y = z;
+    positions.z = y;
 
-    rotations.ry = Math.atan2(x, z) % 2; // ZX plane
+    rotations.ry = Math.min(2, Math.atan2(x, z)); // ZX plane
     updateDisplay();
   });
 
@@ -46,10 +56,14 @@ addEventListener("load", () => {
     var z = Math.cos(rotations.ry);
     var radius = Math.sin(rotations.ry);
 
-  //   var x = radius*Math.cos(rotations.rz);
+    var x = radius*Math.cos(rotations.rz);
     var y = radius*Math.sin(rotations.rz);
+    
+    positions.x = x;
+    positions.y = z;
+    positions.z = y;
 
-    rotations.rx = Math.atan2(y, z) % 2; // ZY plane
+    rotations.rx = Math.min(2, Math.atan2(y, z)); // ZY plane
     updateDisplay();
   }
 
