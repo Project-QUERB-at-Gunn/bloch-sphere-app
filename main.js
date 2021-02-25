@@ -157,7 +157,7 @@ function drawFrame() {
    // alert(1);
     
     const modelView = mat4.create();
-    mat4.translate(modelView, modelView, [0.0, 0.0, -6.0]);
+    mat4.translate(modelView, modelView, [0.0, 0.0, -1.0]);
     
     {
         const type = gl.FLOAT;
