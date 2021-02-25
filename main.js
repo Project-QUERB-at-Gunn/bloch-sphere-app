@@ -107,18 +107,18 @@ function drawFrame() {
         1.0, -1.0
     ];*/
     
-    let positions = [0, 0];
+    let positions = [0.0, 0.0];
     
 //    var x = 0;
   //  var y = 0;
     
-    for (var i = 0; i < Math.PI*2; i += Math.PI*2/vertexCount) {
+    for (var i = 0.0; i < Math.PI*2; i += Math.PI*2/vertexCount) {
         positions.push(Math.cos(i)*radius); // x
         positions.push(Math.sin(i)*radius); // y
 //         positions.push(Math.cos(i+Math.PI*2/vertexCount)*radius); positions.push(Math.sin(i+Math.PI*2/vertexCount)*radius);
         
-        positions.push(0); // z=0
-        positions.push(1); // w=1
+        positions.push(0.0); // z=0
+        positions.push(1.0); // w=1
     }
     
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(positions), gl.STATIC_DRAW);
