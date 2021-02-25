@@ -62,4 +62,4 @@ addEventListener("load", () => {
   function pi(val) {
     return (val == 0.0) ? "" : "π";
   }
-}
+});
