@@ -57,6 +57,10 @@ addEventListener("load", () => {
     displays.rx.innerHTML = pi(rotations.rx);
     displays.ry.innerHTML = pi(rotations.ry);
     displays.rz.innerHTML = pi(rotations.rz);
+    
+    sliders.rx.value = rotations.rx / sliderScale;
+    sliders.ry.value = rotations.ry / sliderScale;
+    sliders.rz.value = rotations.rz / sliderScale;
   }
   
   function pi(val) {
