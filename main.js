@@ -7,6 +7,7 @@ const vsSource = `#version 300 es
     uniform mat4 uModelViewMatrix;
     uniform mat4 uProjectionMatrix;
     uniform vec4 origin;
+    uniform bool point;
     
     void main() {
         colourIn = (aVertexPosition == origin) ? vec4(1.0, 1.0, 0.0, 1.0) : vec4(0.5, 0.5, 0.0, 1.0);
@@ -83,6 +84,7 @@ window.onload = () => {
             projectionMatrix: gl.getUniformLocation(masterShader, 'uProjectionMatrix'),
             modelViewMatrix: gl.getUniformLocation(masterShader, 'uModelViewMatrix'),
             origin: gl.getUniformLocation(masterShader, 'origin'),
+            point: gl.getUniformLocation(masterShader, 'point'),
         },
     };
     
@@ -100,7 +102,8 @@ function drawFrame() {
     const vertexCount = Math.floor(radius*300 + 5);
     const numComponents = 4;
     
-    /*const positions = [
+    /*const 
+    = [
         -1.0, 1.0,
         1.0, 1.0,
         -1.0, -1.0,
@@ -176,9 +179,45 @@ function drawFrame() {
     gl.uniformMatrix4fv(programInfo.uniformLocations.projectionMatrix, false, projection);
     gl.uniformMatrix4fv(programInfo.uniformLocations.modelViewMatrix, false, modelView);
     gl.uniform4f(programInfo.uniformLocations.origin, 0.0, 0.0, 0.0, 1.0);
+    gl.uniform1i(programInfo.uniformLocations.point, 0);
     
     const offset = 0;
     gl.drawArrays(gl.TRIANGLE_FAN, offset, positions.length/numComponents);
+    
+    const rad2 = 0.05;
+    const vert2 = Math.floor(rad2*300 + 5);
+    let pos2 = [pointposition.x, pointposition.y, pointposition.z, 1.0];
+    
+    for (var i = 0.0; i < Math.PI*2; i += Math.PI*2/(vertexCount)) {
+        pos2.push(Math.cos(i)*rad2 + pointposition.x); // x
+        pos2.push(Math.sin(i)*rad2 + pointposition.y); // y
+//         positions.push(Math.cos(i+Math.PI*2/vertexCount)*radius); positions.push(Math.sin(i+Math.PI*2/vertexCount)*radius);
+        
+        pos2.push(pointposition.z); // z=0
+        pos2.push(1.0); // w=1
+    }
+    
+    pos2.push(pointposition.x+radius);
+    pos2.push(pointposition.y);
+    pos2.push(pointposition.z);
+    pos2.push(1.0);
+    
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(pos2), gl.STATIC_DRAW);
+    buffers = {position: positionBuffer}
+    
+    {
+        const type = gl.FLOAT;
+        const normalize = false;
+        const stride = 0;
+        const offset = 0;
+        
+        gl.bindBuffer(gl.ARRAY_BUFFER, buffers.position);
+        gl.vertexAttribPointer(programInfo.attribLocations.vertexPosition, numComponents, type, normalize, stride, offset);
+        gl.enableVertexAttribArray(programInfo.attribLocations.vertexPosition);
+    }
+    
+    gl.uniform1i(programInfo.uniformLocations.point, 1);
+    gl.drawArrays(gl.TRIANGLE_FAN, offset, pos2.length/numComponents);
     
     //alert(3);
     
