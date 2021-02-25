@@ -97,7 +97,7 @@ function drawFrame() {
     gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
     
     const radius = 0.25;
-    const vertexCount = Math.floor(radius*50 + 5);
+    const vertexCount = Math.floor(radius*300 + 5);
     const numComponents = 4;
     
     /*const positions = [
