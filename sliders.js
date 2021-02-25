@@ -28,7 +28,7 @@ addEventListener("load", () => {
     var x = radius*Math.cos(rotations.rz);
   //   var y = radius*Math.sin(rotations.rz);
 
-    rotations.ry = Math.atan2(x, z); // ZX plane
+    rotations.ry = Math.atan2(x, z) % 2; // ZX plane
     updateDisplay();
   });
 
@@ -49,7 +49,7 @@ addEventListener("load", () => {
   //   var x = radius*Math.cos(rotations.rz);
     var y = radius*Math.sin(rotations.rz);
 
-    rotations.rx = Math.atan2(y, z); // ZY plane
+    rotations.rx = Math.atan2(y, z) % 2; // ZY plane
     updateDisplay();
   }
 
