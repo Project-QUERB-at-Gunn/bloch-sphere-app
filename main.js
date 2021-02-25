@@ -96,7 +96,7 @@ function drawFrame() {
     const positionBuffer = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
     
-    const radius = 100;   
+    const radius = 0.1;   
     const vertexCount = Math.floor(radius/2 + 5);
     const numComponents = 4;
     
@@ -150,7 +150,7 @@ function drawFrame() {
    // alert(1);
     
     const modelView = mat4.create();
-    mat4.translate(modelView, modelView, [dimensions.halfWidth, dimensions.halfHeight, -6.0]);
+    mat4.translate(modelView, modelView, [0.0, 0.0, -6.0]);
     
     {
         const type = gl.FLOAT;
@@ -168,7 +168,7 @@ function drawFrame() {
     gl.useProgram(programInfo.program);
     gl.uniformMatrix4fv(programInfo.uniformLocations.projectionMatrix, false, projection);
     gl.uniformMatrix4fv(programInfo.uniformLocations.modelViewMatrix, false, modelView);
-    gl.uniform4f(programInfo.uniformLocations.origin, 0.0, 0.0, -6.0, 1);
+    gl.uniform4f(programInfo.uniformLocations.origin, 0.0, 0.0, -6.0, 1.0);
     
     const offset = 0;
     gl.drawArrays(gl.TRIANGLE_FAN, offset, vertexCount);
