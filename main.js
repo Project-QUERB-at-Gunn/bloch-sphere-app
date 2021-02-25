@@ -169,7 +169,7 @@ function drawFrame() {
     gl.useProgram(programInfo.program);
     gl.uniformMatrix4fv(programInfo.uniformLocations.projectionMatrix, false, projection);
     gl.uniformMatrix4fv(programInfo.uniformLocations.modelViewMatrix, false, modelView);
-    gl.uniform4f(programInfo.uniformLocations.origin, 0.0, 0.0, -6.0, 1.0);
+    gl.uniform4f(programInfo.uniformLocations.origin, 0.0, 0.0, 0.0, 1.0);
     
     const offset = 0;
     gl.drawArrays(gl.TRIANGLE_FAN, offset, vertexCount);
