@@ -54,12 +54,12 @@ addEventListener("load", () => {
   }
 
   function updateDisplay() {
-    displays.rx.innerHTML = rotations.rx + pi(rotations.rx);
-    displays.ry.innerHTML = rotations.ry + pi(rotations.ry);
-    displays.rz.innerHTML = rotations.rz + pi(rotations.rz);
+    displays.rx.innerHTML = pi(rotations.rx);
+    displays.ry.innerHTML = pi(rotations.ry);
+    displays.rz.innerHTML = pi(rotations.rz);
   }
   
   function pi(val) {
-    return (val == 0.0) ? "" : "π";
+    return (val == 1 ? "" : val) + ((val == 0.0) ? "" : "π");
   }
 });
