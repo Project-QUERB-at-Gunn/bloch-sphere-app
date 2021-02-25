@@ -5,7 +5,7 @@ addEventListener("load", () => {
     rz: 0.0
   };
   
-  window.positions = {
+  window.pointposition = {
     x: 0.0,
     y: 1.0,
     z: 0.0
