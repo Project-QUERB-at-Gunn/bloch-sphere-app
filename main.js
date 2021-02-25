@@ -107,7 +107,7 @@ function drawFrame() {
         1.0, -1.0
     ];*/
     
-    let positions = [0.0, 0.0];
+    let positions = [0.0, 0.0, 0.0, 1.0];
     
 //    var x = 0;
   //  var y = 0;
