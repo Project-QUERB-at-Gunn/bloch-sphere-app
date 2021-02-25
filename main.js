@@ -122,6 +122,12 @@ function drawFrame() {
         positions.push(1.0); // w=1
     }
     
+    // return home
+    positions.push(radius);
+    positions.push(0);
+    positions.push(0.0);
+    positions.push(1.0);
+    
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(positions), gl.STATIC_DRAW);
     var buffers = {position: positionBuffer};
     
