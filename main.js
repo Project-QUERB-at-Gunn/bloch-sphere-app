@@ -113,7 +113,7 @@ function drawFrame() {
 //    var x = 0;
   //  var y = 0;
     
-    for (var i = 0.0; i < Math.PI*2; i += Math.PI*2/(vertexCount-1)) {
+    for (var i = 0.0; i < Math.PI*2; i += Math.PI*2/(vertexCount)) {
         positions.push(Math.cos(i)*radius); // x
         positions.push(Math.sin(i)*radius); // y
 //         positions.push(Math.cos(i+Math.PI*2/vertexCount)*radius); positions.push(Math.sin(i+Math.PI*2/vertexCount)*radius);
@@ -172,7 +172,7 @@ function drawFrame() {
     gl.uniform4f(programInfo.uniformLocations.origin, 0.0, 0.0, 0.0, 1.0);
     
     const offset = 0;
-    gl.drawArrays(gl.TRIANGLE_FAN, offset, vertexCount);
+    gl.drawArrays(gl.TRIANGLE_FAN, offset, positions.length);
     
     //alert(3);
     
