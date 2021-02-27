@@ -109,4 +109,6 @@ addEventListener("load", () => {
 //     return (val == 1 ? "" : val) + ((val == 0.0) ? "" : "π");
     return pivals[Math.round(val/sliderScale)];
   }
+  
+  updateDisplay();
 });
