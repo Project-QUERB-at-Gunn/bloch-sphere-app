@@ -110,7 +110,8 @@ addEventListener("load", () => {
     return pivals[Math.round(val/sliderScale)];
   }
   
-  displays.rx.innerHTML = pi(sliders.rx.value);
-  displays.ry.innerHTML = pi(sliders.ry.value);
-  displays.rz.innerHTML = pi(sliders.rz.value);
+  rotations.rx = sliders.rx.value * sliderScale;
+  rotations.ry = sliders.ry.value * sliderScale;
+  rotations.rz = sliders.rz.value * sliderScale;
+  
 });
