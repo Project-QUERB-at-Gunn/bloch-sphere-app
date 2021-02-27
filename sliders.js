@@ -110,5 +110,7 @@ addEventListener("load", () => {
     return pivals[Math.round(val/sliderScale)];
   }
   
-  updateDisplay();
+  displays.rx.innerHTML = pi(sliders.rx.value);
+  displays.ry.innerHTML = pi(sliders.ry.value);
+  displays.rz.innerHTML = pi(sliders.rz.value);
 });
