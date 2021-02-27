@@ -107,6 +107,6 @@ addEventListener("load", () => {
   
   function pi(val) {
 //     return (val == 1 ? "" : val) + ((val == 0.0) ? "" : "π");
-    return pivals[val];
+    return pivals[val/sliderScale];
   }
 });
