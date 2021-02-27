@@ -113,5 +113,5 @@ addEventListener("load", () => {
   rotations.rx = sliders.rx.value * sliderScale;
   rotations.ry = sliders.ry.value * sliderScale;
   rotations.rz = sliders.rz.value * sliderScale;
-  
+  updateDisplay();
 });
