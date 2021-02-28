@@ -190,7 +190,7 @@ function drawFrame() {
     
     const rad2 = 0.05;
     const vert2 = Math.floor(rad2*300 + 5);
-    let pos2 = [pointposition.x, pointposition.y, pointposition.z, 1.0];
+    let pos2 = [pointposition.x*radius, pointposition.y*radius, pointposition.z, 1.0];
     
     for (var i = 0.0; i < Math.PI*2; i += Math.PI*2/(vertexCount)) {
         pos2.push(Math.cos(i)*rad2 + pointposition.x*radius); // x
