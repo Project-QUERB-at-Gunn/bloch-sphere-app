@@ -10,7 +10,11 @@ const vsSource = `#version 300 es
     uniform bool point;
     
     void main() {
-        colourIn = (aVertexPosition == origin) ? vec4(1.0, 1.0, 0.0, 1.0) : vec4(0.5, 0.5, 0.0, 1.0);
+        if (!point)
+            colourIn = (aVertexPosition == origin) ? vec4(1.0, 1.0, 0.0, 1.0) : vec4(0.5, 0.5, 0.0, 1.0);
+        else
+            colourIn = vec4(0.0, 0.0, 0.0, 1.0);
+        
         gl_Position = uProjectionMatrix * uModelViewMatrix * aVertexPosition;
     }
 `;
@@ -186,20 +190,20 @@ function drawFrame() {
     
     const rad2 = 0.05;
     const vert2 = Math.floor(rad2*300 + 5);
-    let pos2 = [pointposition.x, pointposition.y, pointposition.z-1.0, 1.0];
+    let pos2 = [pointposition.x*radius, pointposition.y*radius, pointposition.z-1.0, 1.0];
     
     for (var i = 0.0; i < Math.PI*2; i += Math.PI*2/(vertexCount)) {
-        pos2.push(Math.cos(i)*rad2 + pointposition.x); // x
-        pos2.push(Math.sin(i)*rad2 + pointposition.y); // y
+        pos2.push(Math.cos(i)*rad2 + pointposition.x*radius); // x
+        pos2.push(Math.sin(i)*rad2 + pointposition.y*radius); // y
 //         positions.push(Math.cos(i+Math.PI*2/vertexCount)*radius); positions.push(Math.sin(i+Math.PI*2/vertexCount)*radius);
         
         pos2.push(pointposition.z-1.0); // z=0
         pos2.push(1.0); // w=1
     }
     
-    pos2.push(pointposition.x+radius);
-    pos2.push(pointposition.y);
-    pos2.push(pointposition.z);
+    pos2.push(pointposition.x*radius+rad2);
+    pos2.push(pointposition.y*radius);
+    pos2.push(pointposition.z-1.0);
     pos2.push(1.0);
     
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(pos2), gl.STATIC_DRAW);
