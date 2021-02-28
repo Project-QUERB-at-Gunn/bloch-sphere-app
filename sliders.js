@@ -34,9 +34,9 @@ addEventListener("load", () => {
     var x = radius*Math.cos(rotations.rz);
     var y = radius*Math.sin(rotations.rz);
     
-    pointposition.x = x;
+    pointposition.x = y;
     pointposition.y = z;
-    pointposition.z = y;
+    pointposition.z = x;
 
     rotations.ry = Math.min(2, Math.atan2(x, z)); // ZX plane
     updateDisplay();
@@ -59,9 +59,9 @@ addEventListener("load", () => {
     var x = radius*Math.cos(rotations.rz);
     var y = radius*Math.sin(rotations.rz);
     
-    pointposition.x = x;
+    pointposition.x = y;
     pointposition.y = z;
-    pointposition.z = y;
+    pointposition.z = z;
 
     rotations.rx = Math.min(2, Math.atan2(y, z)); // ZY plane
     updateDisplay();
