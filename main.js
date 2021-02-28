@@ -188,7 +188,7 @@ function drawFrame() {
     const offset = 0;
     gl.drawArrays(gl.TRIANGLE_FAN, offset, positions.length/numComponents);
     
-    const rad2 = 0.05;
+    const rad2 = 0.01;
     const vert2 = Math.floor(rad2*300 + 5);
     let pos2 = [pointposition.x*radius, pointposition.y*radius, pointposition.z, 1.0];
     
