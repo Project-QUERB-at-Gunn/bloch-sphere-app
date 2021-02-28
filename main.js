@@ -193,16 +193,16 @@ function drawFrame() {
     let pos2 = [pointposition.x, pointposition.y, pointposition.z, 1.0];
     
     for (var i = 0.0; i < Math.PI*2; i += Math.PI*2/(vertexCount)) {
-        pos2.push(Math.cos(i)*rad2 + pointposition.x); // x
-        pos2.push(Math.sin(i)*rad2 + pointposition.y); // y
+        pos2.push(Math.cos(i)*rad2 + pointposition.x*radius); // x
+        pos2.push(Math.sin(i)*rad2 + pointposition.y*radius); // y
 //         positions.push(Math.cos(i+Math.PI*2/vertexCount)*radius); positions.push(Math.sin(i+Math.PI*2/vertexCount)*radius);
         
         pos2.push(pointposition.z); // z=0
         pos2.push(1.0); // w=1
     }
     
-    pos2.push(pointposition.x+rad2);
-    pos2.push(pointposition.y);
+    pos2.push(pointposition.x*radius + rad2);
+    pos2.push(pointposition.y*radius);
     pos2.push(pointposition.z);
     pos2.push(1.0);
     
