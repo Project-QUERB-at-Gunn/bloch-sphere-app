@@ -31,8 +31,8 @@ addEventListener("load", () => {
     var z = Math.cos(rotations.rx);
     var radius = Math.sin(rotations.rx);
 
-    var x = radius*Math.cos(rotations.rz);
-    var y = radius*Math.sin(rotations.rz);
+    var y = radius*Math.cos(rotations.rz);
+    var x = radius*Math.sin(rotations.rz);
     
     pointposition.x = y;
     pointposition.y = z;
@@ -56,8 +56,8 @@ addEventListener("load", () => {
     var z = Math.cos(rotations.ry);
     var radius = Math.sin(rotations.ry);
 
-    var x = radius*Math.cos(rotations.rz);
-    var y = radius*Math.sin(rotations.rz);
+    var y = radius*Math.cos(rotations.rz);
+    var x = radius*Math.sin(rotations.rz);
     
     pointposition.x = y;
     pointposition.y = z;
