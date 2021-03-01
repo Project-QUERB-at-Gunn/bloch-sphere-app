@@ -1,5 +1,5 @@
-import * as mat4 from "./glMatrix/mat4.js";
-import * as vec4 from "./glMatrix/vec4.js";
+import * as mat4 from "./glmatrix/mat4.js";
+import * as vec4 from "./glmatrix/vec4.js";
 
 addEventListener("load", () => {
   window.rotations = {
