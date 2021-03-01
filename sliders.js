@@ -32,8 +32,8 @@ addEventListener("load", () => {
     rotations.rx = sliders.rx.value * sliderScale;
 
     var rot = mat4.create();
-    mat4.fromXRotation(rot, rotations.rx);
-    mat4.rotateZ(rot, rot, rotations.rz)
+    mat4.fromXRotation(rot, rotations.rx*Math.PI);
+    mat4.rotateZ(rot, rot, rotations.rz*Math.PI)
     
     var vec = vec4.fromValues(0.0, 0.0, 1.0, 1.0);
     vec4.transformMat4(vec, vec, rot);
@@ -45,7 +45,7 @@ addEventListener("load", () => {
     pointposition.y = z;
     pointposition.z = x;
 
-    rotations.ry = Math.min(2, Math.atan2(x, z)); // ZX plane
+    rotations.ry = Math.atan2(x,z)/Math.PI; // ZX plane
     updateDisplay();
   });
 
@@ -61,8 +61,8 @@ addEventListener("load", () => {
 
   function updateRx() {
     var rot = mat4.create();
-    mat4.fromYRotation(rot, rotations.ry);
-    mat4.rotateZ(rot, rot, rotations.rz)
+    mat4.fromYRotation(rot, rotations.ry*Math.PI);
+    mat4.rotateZ(rot, rot, rotations.rz*Math.PI)
     
     var vec = vec4.fromValues(0.0, 0.0, 1.0, 1.0);
     vec4.transformMat4(vec, vec, rot);
@@ -70,7 +70,7 @@ addEventListener("load", () => {
         y = vec[1],
         z = vec[2];
 
-    rotations.rx = Math.min(2, Math.atan2(y, z)); // ZY plane
+    rotations.rx = Math.atan2(y,z)/Math.PI; // ZY plane
     updateDisplay();
   }
 
