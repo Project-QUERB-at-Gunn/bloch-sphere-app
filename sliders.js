@@ -1,3 +1,6 @@
+import * as mat4 from "./glMatrix/mat4.js";
+import * as vec4 from "./glMatrix/vec4.js";
+
 addEventListener("load", () => {
   window.rotations = {
     rx: 0.0,
@@ -28,11 +31,15 @@ addEventListener("load", () => {
   document.getElementById("rx").addEventListener("change", () => {
     rotations.rx = sliders.rx.value * sliderScale;
 
-    var z = Math.cos(rotations.rx);
-    var radius = Math.sin(rotations.rx);
-
-    var y = radius*Math.cos(rotations.rz);
-    var x = radius*Math.sin(rotations.rz);
+    var rot = mat4.create();
+    mat4.fromXRotation(rot, rotations.rx);
+    mat4.rotateZ(rot, rot, rotations.rz)
+    
+    var vec = vec4.fromValues(0.0, 0.0, 1.0, 1.0);
+    vec4.transformMat4(vec, vec, rot);
+    let x = vec[0],
+        y = vec[1],
+        z = vec[2];
     
     pointposition.x = y;
     pointposition.y = z;
@@ -53,15 +60,15 @@ addEventListener("load", () => {
   });
 
   function updateRx() {
-    var z = Math.cos(rotations.ry);
-    var radius = Math.sin(rotations.ry);
-
-    var y = radius*Math.cos(rotations.rz);
-    var x = radius*Math.sin(rotations.rz);
+    var rot = mat4.create();
+    mat4.fromYRotation(rot, rotations.ry);
+    mat4.rotateZ(rot, rot, rotations.rz)
     
-    pointposition.x = y;
-    pointposition.y = z;
-    pointposition.z = z;
+    var vec = vec4.fromValues(0.0, 0.0, 1.0, 1.0);
+    vec4.transformMat4(vec, vec, rot);
+    let x = vec[0],
+        y = vec[1],
+        z = vec[2];
 
     rotations.rx = Math.min(2, Math.atan2(y, z)); // ZY plane
     updateDisplay();
