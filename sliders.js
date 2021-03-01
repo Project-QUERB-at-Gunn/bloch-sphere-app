@@ -1,14 +1,16 @@
 import * as mat4 from "./glmatrix/mat4.js";
 import * as vec4 from "./glmatrix/vec4.js";
 
+export var pointposition, rotations;
+
 addEventListener("load", () => {
-  window.rotations = {
+  rotations = {
     rx: 0.0,
     ry: 0.0,
     rz: 0.0
   };
   
-  window.pointposition = {
+  pointposition = {
     x: 0.0,
     y: 1.0,
     z: 0.0
