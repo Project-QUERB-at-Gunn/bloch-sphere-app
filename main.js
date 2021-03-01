@@ -1,4 +1,7 @@
 import * as mat4 from "./glmatrix/mat4.js";
+import * as sliders from "./sliders.js";
+
+var pointposition = sliders.pointposition;
 
 const vsSource = `#version 300 es
     layout (location=0) in vec4 aVertexPosition;
