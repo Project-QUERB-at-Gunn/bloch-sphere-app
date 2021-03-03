@@ -71,6 +71,10 @@ addEventListener("load", () => {
     let x = vec[0],
         y = vec[1],
         z = vec[2];
+    
+    pointposition.x = y;
+    pointposition.y = z;
+    pointposition.z = x;
 
     rotations.rx = Math.atan2(y,z)/Math.PI; // ZY plane
     updateDisplay();
