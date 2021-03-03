@@ -1,7 +1,7 @@
 import * as mat4 from "./glmatrix/mat4.js";
 import * as sliders from "./sliders.js";
 
-var pointposition = sliders.pointposition;
+// var pointposition = sliders.pointposition;
 
 const vsSource = `#version 300 es
     layout (location=0) in vec4 aVertexPosition;
@@ -193,6 +193,8 @@ function drawFrame() {
     
     const rad2 = 0.01;
     const vert2 = Math.floor(rad2*300 + 5);
+    
+    var pointposition = sliders.pointposition; // so i dont have to rewrite this
     let pos2 = [pointposition.x*radius, pointposition.y*radius, pointposition.z, 1.0];
     
     for (var i = 0.0; i < Math.PI*2; i += Math.PI*2/(vertexCount)) {
