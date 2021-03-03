@@ -97,7 +97,7 @@ window.onload = () => {
     
     console.log(programInfo);
     
-    drawFrame();
+    requestAnimationFrame(drawFrame);
 }
 
 function drawFrame() {
