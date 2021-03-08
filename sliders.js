@@ -92,6 +92,10 @@ addEventListener("load", () => {
   }
 
   function updateDisplay() {
+    rotations.rx = (rotations.rx + 2)%2;
+    rotations.ry = (rotations.ry + 2)%2;
+    rotations.rz = (rotations.rz + 2)%2;
+    
     displays.rx.innerHTML = pi(rotations.rx);
     displays.ry.innerHTML = pi(rotations.ry);
     displays.rz.innerHTML = pi(rotations.rz);
