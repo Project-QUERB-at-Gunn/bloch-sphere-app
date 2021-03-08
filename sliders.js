@@ -103,6 +103,8 @@ addEventListener("load", () => {
     deltas.rx = 0.0;
     deltas.ry = 0.0;
     deltas.rz = 0.0;
+    
+    console.log(rotations);
   }
   
   const pivals = [
