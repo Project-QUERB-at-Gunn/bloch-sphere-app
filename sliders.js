@@ -1,7 +1,7 @@
 import * as mat4 from "./glmatrix/mat4.js";
 import * as vec4 from "./glmatrix/vec4.js";
 
-export var pointposition, rotations;
+export var ppvec, rotations;
 
 addEventListener("load", () => {
   rotations = {
