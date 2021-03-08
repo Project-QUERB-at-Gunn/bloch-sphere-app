@@ -10,11 +10,13 @@ addEventListener("load", () => {
     rz: 0.0
   };
   
-  pointposition = {
-    x: 0.0,
-    y: 1.0,
-    z: 0.0
-  }
+//   pointposition = {
+//     x: 0.0,
+//     y: 1.0,
+//     z: 0.0
+//   }
+  
+  ppvec = vec4.fromValues(0.0, 0.0, 1.0, 1.0);
 
   let sliders = {
     rx: document.getElementById("rx"),
@@ -37,15 +39,15 @@ addEventListener("load", () => {
     mat4.fromXRotation(rot, rotations.rx*Math.PI);
     mat4.rotateZ(rot, rot, rotations.rz*Math.PI)
     
-    var vec = vec4.fromValues(0.0, 0.0, 1.0, 1.0);
-    vec4.transformMat4(vec, vec, rot);
+//     var vec = vec4.create();
+    vec4.transformMat4(ppvec, ppvec, rot);
     let x = vec[0],
         y = vec[1],
         z = vec[2];
     
-    pointposition.x = y;
-    pointposition.y = z;
-    pointposition.z = x;
+//     pointposition.x = y;
+//     pointposition.y = z;
+//     pointposition.z = x;
 
     rotations.ry = Math.atan2(x,z)/Math.PI; // ZX plane
     updateDisplay();
@@ -66,15 +68,15 @@ addEventListener("load", () => {
     mat4.fromYRotation(rot, rotations.ry*Math.PI);
     mat4.rotateZ(rot, rot, rotations.rz*Math.PI)
     
-    var vec = vec4.fromValues(0.0, 0.0, 1.0, 1.0);
-    vec4.transformMat4(vec, vec, rot);
-    let x = vec[0],
-        y = vec[1],
-        z = vec[2];
+//     var vec = vec4.fromValues(0.0, 0.0, 1.0, 1.0);
+    vec4.transformMat4(ppvec, ppvec, rot);
+    let x = ppvec[0],
+        y = ppvec[1],
+        z = ppvec[2];
     
-    pointposition.x = y;
-    pointposition.y = z;
-    pointposition.z = x;
+//     pointposition.x = y;
+//     pointposition.y = z;
+//     pointposition.z = x;
 
     rotations.rx = Math.atan2(y,z)/Math.PI; // ZY plane
     updateDisplay();
