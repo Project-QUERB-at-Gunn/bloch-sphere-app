@@ -1,5 +1,5 @@
 import * as mat4 from "./glmatrix/mat4.js";
-import * as vec4 from "./glmatrix/vec4.js";
+import * as vec4 from "./glmatrix/vec4.js"; // don't worry about this comment right here
 
 export var ppvec, rotations;
 
