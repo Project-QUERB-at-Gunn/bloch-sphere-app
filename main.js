@@ -194,21 +194,21 @@ function drawFrame() {
     const rad2 = 0.01;
     const vert2 = Math.floor(rad2*300 + 5);
     
-    var pointposition = sliders.pointposition; // so i dont have to rewrite this
-    let pos2 = [pointposition.x*radius, pointposition.y*radius, pointposition.z, 1.0];
+    var pointposition = sliders.ppvec; // so i dont have to rewrite this
+    let pos2 = [pointposition[0]*radius, pointposition[1]*radius, pointposition[2], 1.0];
     
     for (var i = 0.0; i < Math.PI*2; i += Math.PI*2/(vertexCount)) {
-        pos2.push(Math.cos(i)*rad2 + pointposition.x*radius); // x
-        pos2.push(Math.sin(i)*rad2 + pointposition.y*radius); // y
+        pos2.push(Math.cos(i)*rad2 + pointposition[0]*radius); // x
+        pos2.push(Math.sin(i)*rad2 + pointposition[1]*radius); // y
 //         positions.push(Math.cos(i+Math.PI*2/vertexCount)*radius); positions.push(Math.sin(i+Math.PI*2/vertexCount)*radius);
         
-        pos2.push(pointposition.z); // z=0
+        pos2.push(pointposition[2]); // z=0
         pos2.push(1.0); // w=1
     }
     
-    pos2.push(pointposition.x*radius + rad2);
-    pos2.push(pointposition.y*radius);
-    pos2.push(pointposition.z);
+    pos2.push(pointposition[0]*radius + rad2);
+    pos2.push(pointposition[1]*radius);
+    pos2.push(pointposition[2]);
     pos2.push(1.0);
     
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(pos2), gl.STATIC_DRAW);
