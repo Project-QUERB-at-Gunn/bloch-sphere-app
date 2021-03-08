@@ -48,9 +48,9 @@ addEventListener("load", () => {
     
 //     var vec = vec4.create();
     vec4.transformMat4(ppvec, ppvec, rot);
-    let x = vec[0],
-        y = vec[1],
-        z = vec[2];
+    let x = ppvec[0],
+        y = ppvec[1],
+        z = ppvec[2];
     
 //     pointposition.x = y;
 //     pointposition.y = z;
