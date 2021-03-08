@@ -194,7 +194,8 @@ function drawFrame() {
     const rad2 = 0.01;
     const vert2 = Math.floor(rad2*300 + 5);
     
-    var pointposition = sliders.ppvec; // so i dont have to rewrite this
+    var ppvec = sliders.ppvec; // so i dont have to rewrite this
+    let pointposition = [ppvec[1], ppvec[2], ppvec[0]];
     let pos2 = [pointposition[0]*radius, pointposition[1]*radius, pointposition[2], 1.0];
     
     for (var i = 0.0; i < Math.PI*2; i += Math.PI*2/(vertexCount)) {
