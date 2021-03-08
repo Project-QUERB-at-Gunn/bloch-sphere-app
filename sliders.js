@@ -39,7 +39,7 @@ addEventListener("load", () => {
   const sliderScale = 1/12; // multiply Math.PI later.
 
   document.getElementById("rx").addEventListener("change", () => {
-    deltas.rx = rotations.rx - sliders.rx.value*sliderScale
+    deltas.rx = -(rotations.rx - sliders.rx.value*sliderScale);
     rotations.rx = sliders.rx.value * sliderScale;
 
     var rot = mat4.create();
@@ -61,13 +61,13 @@ addEventListener("load", () => {
   });
 
   document.getElementById("ry").addEventListener("change", () => {
-    deltas.ry = rotations.ry - sliders.ry.value*sliderScale
+    deltas.ry = -(rotations.ry - sliders.ry.value*sliderScale);
     rotations.ry = sliders.ry.value * sliderScale;
     updateRx();
   });
 
   document.getElementById("rz").addEventListener("change", () => {
-    deltas.rz = rotations.rz - sliders.rz.value*sliderScale
+    deltas.rz = -(rotations.rz - sliders.rz.value*sliderScale);
     rotations.rz = sliders.rz.value * sliderScale;
     updateRx();
   });
