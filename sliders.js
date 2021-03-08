@@ -10,6 +10,12 @@ addEventListener("load", () => {
     rz: 0.0
   };
   
+  var deltas = {
+    rx: 0.0,
+    ry: 0.0,
+    rz: 0.0
+  };
+  
 //   pointposition = {
 //     x: 0.0,
 //     y: 1.0,
@@ -33,11 +39,12 @@ addEventListener("load", () => {
   const sliderScale = 1/12; // multiply Math.PI later.
 
   document.getElementById("rx").addEventListener("change", () => {
+    deltas.rx = rotations.rx - sliders.rx.value*sliderScale
     rotations.rx = sliders.rx.value * sliderScale;
 
     var rot = mat4.create();
-    mat4.fromXRotation(rot, rotations.rx*Math.PI);
-    mat4.rotateZ(rot, rot, rotations.rz*Math.PI)
+    mat4.fromXRotation(rot, deltas.rx*Math.PI);
+//     mat4.rotateZ(rot, rot, rotations.rz*Math.PI)
     
 //     var vec = vec4.create();
     vec4.transformMat4(ppvec, ppvec, rot);
@@ -54,19 +61,21 @@ addEventListener("load", () => {
   });
 
   document.getElementById("ry").addEventListener("change", () => {
+    deltas.ry = rotations.ry - sliders.ry.value*sliderScale
     rotations.ry = sliders.ry.value * sliderScale;
     updateRx();
   });
 
   document.getElementById("rz").addEventListener("change", () => {
+    deltas.rz = rotations.rz - sliders.rz.value*sliderScale
     rotations.rz = sliders.rz.value * sliderScale;
     updateRx();
   });
 
   function updateRx() {
     var rot = mat4.create();
-    mat4.fromYRotation(rot, rotations.ry*Math.PI);
-    mat4.rotateZ(rot, rot, rotations.rz*Math.PI)
+    mat4.fromYRotation(rot, deltas.ry*Math.PI);
+    mat4.rotateZ(rot, rot, deltas.rz*Math.PI)
     
 //     var vec = vec4.fromValues(0.0, 0.0, 1.0, 1.0);
     vec4.transformMat4(ppvec, ppvec, rot);
@@ -90,6 +99,10 @@ addEventListener("load", () => {
     sliders.rx.value = rotations.rx / sliderScale;
     sliders.ry.value = rotations.ry / sliderScale;
     sliders.rz.value = rotations.rz / sliderScale;
+    
+    deltas.rx = 0.0;
+    deltas.ry = 0.0;
+    deltas.rz = 0.0;
   }
   
   const pivals = [
