@@ -23,6 +23,11 @@ addEventListener("load", () => {
 //   }
   
   ppvec = vec4.fromValues(0.0, 0.0, 1.0, 1.0);
+  
+  if (localStorage.rotations && localStorage.ppvec) {
+    rotations = JSON.parse(localStorage.rotations);
+    ppvec = vec4.fromValues.apply(vec4, JSON.parse(localStorage.ppvec));
+  }
 
   let sliders = {
     rx: document.getElementById("rx"),
@@ -41,6 +46,9 @@ addEventListener("load", () => {
   document.getElementById("rx").addEventListener("change", () => {
     deltas.rx = -(rotations.rx - sliders.rx.value*sliderScale);
     rotations.rx = sliders.rx.value * sliderScale;
+
+    if (deltas.rx == 2)
+        return updateDisplay();
 
     var rot = mat4.create();
     mat4.fromXRotation(rot, deltas.rx*Math.PI);
@@ -63,13 +71,13 @@ addEventListener("load", () => {
   document.getElementById("ry").addEventListener("change", () => {
     deltas.ry = -(rotations.ry - sliders.ry.value*sliderScale);
     rotations.ry = sliders.ry.value * sliderScale;
-    updateRx();
+    deltas.ry == 2 ? updateDisplay() : updateRx();
   });
 
   document.getElementById("rz").addEventListener("change", () => {
     deltas.rz = -(rotations.rz - sliders.rz.value*sliderScale);
     rotations.rz = sliders.rz.value * sliderScale;
-    updateRx();
+    deltas.rz == 2 ? updateDisplay() : updateRx();
   });
 
   function updateRx() {
@@ -109,6 +117,10 @@ addEventListener("load", () => {
     deltas.rz = 0.0;
     
     console.log(rotations);
+    console.log(ppvec);
+
+    localStorage.rotations = JSON.stringify(rotations);
+    localStorage.ppvec = JSON.stringify([ppvec[0], ppvec[1], ppvec[2], ppvec[3]]);
   }
   
   const pivals = [

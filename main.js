@@ -162,7 +162,8 @@ function drawFrame() {
     
     const projection = mat4.create();
     //alert(20);
-    mat4.perspective(projection, fov, aspect, zNear, zFar);
+    if (!window.dontperspective)
+	mat4.perspective(projection, fov, aspect, zNear, zFar);
     
    // alert(1);
     
@@ -196,20 +197,20 @@ function drawFrame() {
     
     var ppvec = sliders.ppvec; // so i dont have to rewrite this
     let pointposition = [ppvec[1], ppvec[2], ppvec[0]];
-    let pos2 = [pointposition[0]*radius, pointposition[1]*radius, pointposition[2], 1.0];
+    let pos2 = [pointposition[0]*radius, pointposition[1]*radius, pointposition[2]*radius, 1.0];
     
     for (var i = 0.0; i < Math.PI*2; i += Math.PI*2/(vertexCount)) {
         pos2.push(Math.cos(i)*rad2 + pointposition[0]*radius); // x
         pos2.push(Math.sin(i)*rad2 + pointposition[1]*radius); // y
 //         positions.push(Math.cos(i+Math.PI*2/vertexCount)*radius); positions.push(Math.sin(i+Math.PI*2/vertexCount)*radius);
         
-        pos2.push(pointposition[2]); // z=0
+        pos2.push(pointposition[2]*radius); // z=0
         pos2.push(1.0); // w=1
     }
     
     pos2.push(pointposition[0]*radius + rad2);
     pos2.push(pointposition[1]*radius);
-    pos2.push(pointposition[2]);
+    pos2.push(pointposition[2]*radius);
     pos2.push(1.0);
     
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(pos2), gl.STATIC_DRAW);
