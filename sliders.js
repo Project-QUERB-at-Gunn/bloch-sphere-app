@@ -1,5 +1,5 @@
 import * as mat4 from "./glmatrix/mat4.js";
-import * as vec4 from "./glmatrix/vec4.js"; // don't worry about this comment right here
+import * as vec4 from "./glmatrix/vec4.js";
 
 export var ppvec, rotations;
 
@@ -160,4 +160,18 @@ addEventListener("load", () => {
   rotations.ry = sliders.ry.value * sliderScale;
   rotations.rz = sliders.rz.value * sliderScale;
   updateDisplay();
+                             
+                             document.getElementById("reset").onclick = function() {
+                             rotations.rx = 0;
+                             rotations.ry = 0;
+                             rotations.rz = 0;
+                             
+                             ppvec[0] = 0.0;
+                             ppvec[1] = 0.0;
+                             ppvec[2] = 1.0;
+                             ppvec[3] = 1.0;
+                             
+                             updateDisplay();
+                             }
+                     
 });
